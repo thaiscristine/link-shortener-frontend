@@ -34,6 +34,16 @@ export default {
       boxShadow: {
         card: '0 1px 3px 0 rgb(0 0 0 / 0.06)',
       },
+      keyframes: {
+        grow: {
+          '0%': { transform: 'scaleX(0)' },
+          '80%': { transform: 'scaleX(1)' },
+          '100%': { transform: 'scaleX(1)', opacity: '0' },
+        },
+      },
+      animation: {
+        grow: 'grow 1.1s ease-out infinite',
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,6 @@
 import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import { Trash } from '@phosphor-icons/react'
+import { type MouseEvent, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useDeleteLink } from '../hooks'
 
@@ -8,10 +9,28 @@ type DeleteLinkDialogProps = {
 }
 
 export function DeleteLinkDialog({ shortUrl }: DeleteLinkDialogProps) {
+  const [open, setOpen] = useState(false)
   const deleteLink = useDeleteLink()
 
+  async function handleDelete(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+    try {
+      await deleteLink.mutateAsync(shortUrl)
+      setOpen(false)
+    } catch {
+      
+    }
+  }
+
   return (
-    <AlertDialog.Root>
+    <AlertDialog.Root
+      open={open}
+      onOpenChange={isOpen => {
+        if (deleteLink.isPending) return
+        setOpen(isOpen)
+        if (!isOpen) deleteLink.reset()
+      }}
+    >
       <AlertDialog.Trigger asChild>
         <Button variant="icon" aria-label="Deletar link">
           <Trash />
@@ -29,15 +48,23 @@ export function DeleteLinkDialog({ shortUrl }: DeleteLinkDialogProps) {
             ação não pode ser desfeita.
           </AlertDialog.Description>
 
+          {deleteLink.isError ? (
+            <p className="mt-2 text-sm text-danger">
+              Não foi possível deletar o link. Tente novamente.
+            </p>
+          ) : null}
+
           <div className="mt-6 flex justify-end gap-3">
             <AlertDialog.Cancel asChild>
-              <Button variant="secondary">Cancelar</Button>
+              <Button variant="secondary" disabled={deleteLink.isPending}>
+                Cancelar
+              </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
               <Button
                 variant="primary"
                 isLoading={deleteLink.isPending}
-                onClick={() => deleteLink.mutate(shortUrl)}
+                onClick={handleDelete}
               >
                 Deletar
               </Button>

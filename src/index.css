@@ -3,3 +3,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollbar-brand {
+  scrollbar-color: #2c46b1 #e4e6ec;
+}
+
+.scrollbar-brand::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-brand::-webkit-scrollbar-track {
+  background: #e4e6ec;
+  border-radius: 9999px;
+}
+
+.scrollbar-brand::-webkit-scrollbar-thumb {
+  background-color: #2c46b1;
+  border-radius: 9999px;
+}

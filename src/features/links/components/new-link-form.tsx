@@ -67,8 +67,8 @@ export function NewLinkForm() {
         <p className="text-sm text-danger">{errors.root.message}</p>
       ) : null}
 
-      <Button type="submit" isLoading={isSubmitting} disabled={!isValid}>
-        Salvar link
+      <Button type="submit" disabled={!isValid || isSubmitting}>
+        {isSubmitting ? 'Salvando...' : 'Salvar link'}
       </Button>
     </form>
   )
