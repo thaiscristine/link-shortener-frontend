@@ -41,3 +41,10 @@ export async function del(path: string): Promise<void> {
     throw new ApiError(response.status, body.message ?? response.statusText)
   }
 }
+
+export async function patch<T>(path: string): Promise<T> {
+  const response = await fetch(`${BASE_URL}${path}`, {
+    method: 'PATCH',
+  })
+  return handleResponse<T>(response)
+}
