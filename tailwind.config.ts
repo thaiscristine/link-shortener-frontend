@@ -6,18 +6,33 @@ export default {
     extend: {
       colors: {
         blue: {
-          DEFAULT: '#2C46B1',
+          base: '#2C46B1',
+          dark: '#2C4091',
           muted: '#7C8DB5',
         },
-        red: {
-          DEFAULT: '#B12C4D',
-        },
         gray: {
-          page: '#E5E5E5',
+          white: '#FFFFFF',
+          100: '#F9F9FB',
+          200: '#E4E6EC',
+          300: '#CDCFD5',
+          400: '#74798B',
+          500: '#4D505C',
+          600: '#1F2025',
         },
+        danger: '#B12C4D',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Open Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        xl: ['24px', { lineHeight: '32px' }],
+        lg: ['18px', { lineHeight: '24px' }],
+        md: ['14px', { lineHeight: '18px' }],
+        sm: ['12px', { lineHeight: '16px' }],
+        xs: ['10px', { lineHeight: '14px' }],
+      },
+      boxShadow: {
+        card: '0 1px 3px 0 rgb(0 0 0 / 0.06)',
       },
     },
   },

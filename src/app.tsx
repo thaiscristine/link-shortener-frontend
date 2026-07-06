@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <HomeRoute />,
   },
   {
-    path: '/:shortCode',
+    path: '/:shortUrl',
     element: <RedirectRoute />,
   },
   {
