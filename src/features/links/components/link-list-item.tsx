@@ -24,7 +24,7 @@ export function LinkListItem({ link }: LinkListItemProps) {
     <div className="flex items-center justify-between gap-4 border-b border-gray-300 py-3 last:border-none">
       <div className="flex flex-col gap-1 overflow-hidden">
         <a
-          href={link.originalUrl}
+          href={`/${link.shortUrl}`}
           target="_blank"
           rel="noreferrer"
           className="truncate text-md font-semibold text-blue-base hover:underline"
